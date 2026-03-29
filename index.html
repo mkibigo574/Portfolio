@@ -70,7 +70,7 @@
       overflow:hidden;
     }
     .hero-layout{
-      display:grid; grid-template-columns:1fr 280px; gap:64px; align-items:center;
+      display:grid; grid-template-columns:1fr 340px; gap:64px; align-items:center;
     }
     .hero-greeting{
       display:flex; align-items:center; gap:10px;
@@ -112,15 +112,13 @@
       display:flex; flex-direction:column; gap:16px; align-items:center;
     }
     .photo-frame{
-      width:100%; aspect-ratio:3/4; border-radius:28px; overflow:hidden;
-      border:1px solid var(--line);
-      background:linear-gradient(160deg, var(--teal), var(--dark));
-      box-shadow:0 12px 40px rgba(15,21,22,.16);
+      width:100%; aspect-ratio:4/5; border-radius:28px;
       position:relative;
     }
     .photo-frame img{
       width:100%; height:100%; object-fit:cover; object-position:top center;
-      display:block;
+      display:block; border-radius:28px;
+      mix-blend-mode:multiply;
     }
     .photo-badge{
       position:absolute; bottom:16px; left:50%; transform:translateX(-50%);
@@ -536,7 +534,7 @@
         <div class="hero-photo-col">
           <div class="photo-frame">
             <!-- Replace photo.jpg with your actual image filename -->
-            <img src="photo.jpg" alt="Michael Kibigo">
+            <img src="WhatsApp Image 2026-03-29 at 16.31.17.jpeg" alt="Michael Kibigo">
             <div class="photo-badge">
               <span class="photo-badge-dot"></span>
               <span class="photo-badge-text">Available for projects</span>
