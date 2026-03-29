@@ -407,21 +407,92 @@
       font-size:.82rem; color:rgba(201,194,194,.50);
     }
 
+    /* ─── HAMBURGER ─── */
+    .hamburger{
+      display:none; flex-direction:column; justify-content:center; gap:5px;
+      background:none; border:none; cursor:pointer;
+      padding:6px; width:36px; height:36px; flex-shrink:0;
+    }
+    .hamburger span{
+      display:block; width:22px; height:2px;
+      background:var(--text); border-radius:2px;
+      transition:transform .22s ease, opacity .22s ease;
+    }
+    .hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.active span:nth-child(2){opacity:0}
+    .hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .nav-end{display:flex; align-items:center; gap:10px}
+
     /* ─── RESPONSIVE ─── */
+
+    /* Small desktop */
+    @media(max-width:1024px){
+      .hero-layout{gap:44px}
+      .skills-grid{gap:32px}
+    }
+
+    /* Tablet */
     @media(max-width:880px){
       .hero-layout{grid-template-columns:1fr; gap:36px}
-      .project-grid,.skills-grid,.contact-grid{grid-template-columns:1fr}
+      .photo-frame{aspect-ratio:auto; height:260px}
+      .hero-photo-col{flex-direction:row; align-items:center; flex-wrap:wrap; gap:16px}
+      .hero-chips{justify-content:flex-start}
+      .project-grid{grid-template-columns:1fr}
+      .skills-grid,.contact-grid{grid-template-columns:1fr}
       .svc-body{grid-template-columns:1fr; padding-left:64px}
       .proj-card.proj-featured{grid-template-columns:1fr}
       .proj-card.proj-featured .proj-visual{min-height:200px}
+      .section{padding:64px 0}
+      .skills-section{padding:64px 0}
     }
+
+    /* Mobile */
     @media(max-width:620px){
-      h1{font-size:clamp(2.8rem, 12vw, 4rem)}
-      .nav-links{display:none}
-      .section,.skills-section{padding:56px 0}
-      details.svc summary{grid-template-columns:48px 1fr 32px; gap:14px}
-      .svc-body{padding-left:0}
       .wrap{width:calc(100% - 32px)}
+      .nav-links{
+        display:none; flex-direction:column; gap:0;
+        position:absolute; top:64px; left:0; right:0; z-index:99;
+        background:rgba(243,242,241,.98);
+        backdrop-filter:blur(14px);
+        border-bottom:1px solid var(--line);
+        padding:8px 0;
+      }
+      .nav-links.open{display:flex}
+      .nav-links a{padding:13px 24px; font-size:.95rem}
+      .hamburger{display:flex}
+      nav{position:sticky}
+      h1{font-size:clamp(2.6rem, 11vw, 3.8rem)}
+      .hero{padding:52px 0 48px}
+      .hero-layout{gap:32px}
+      .hero-photo-col{flex-direction:column; align-items:flex-start}
+      .photo-frame{aspect-ratio:auto; height:260px; max-width:100%; width:100%}
+      .hero-chips{justify-content:flex-start}
+      .hero-btns .btn{flex:1 1 calc(50% - 6px); justify-content:center}
+      .section,.skills-section{padding:52px 0}
+      .sec-title{margin-bottom:32px}
+      details.svc summary{
+        grid-template-columns:44px 1fr 32px; gap:12px; padding:18px 0;
+      }
+      .svc-title{font-size:1.05rem}
+      .svc-body{padding-left:0; padding-bottom:20px}
+      .proj-body h3{font-size:1rem}
+      .contact-main{padding:24px 20px}
+      .c-item span{word-break:break-all; font-size:.88rem}
+      .skills-grid{gap:32px}
+      .skill{padding:7px 13px; font-size:.8rem}
+    }
+
+    /* Small mobile */
+    @media(max-width:400px){
+      .wrap{width:calc(100% - 24px)}
+      h1{font-size:clamp(2.2rem, 13vw, 3rem)}
+      .hero-btns .btn{flex:1 1 100%}
+      .nav-btn{padding:8px 14px; font-size:.82rem}
+      .chip{font-size:.72rem; padding:4px 10px}
+      .skill{padding:6px 11px; font-size:.76rem}
+      .sec-title{font-size:clamp(1.5rem, 7vw, 2rem)}
+      .svc-title{font-size:.98rem}
+      .contact-main h2{font-size:1.35rem}
     }
   </style>
 </head>
@@ -437,7 +508,12 @@
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </div>
-      <a class="nav-btn" href="#contact">Contact Me</a>
+      <div class="nav-end">
+        <a class="nav-btn" href="#contact">Contact Me</a>
+        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -776,6 +852,7 @@
   </footer>
 
   <script>
+    // iframe preview scaling
     function scaleProjectPreviews() {
       document.querySelectorAll('.proj-visual').forEach(function(wrap) {
         var iframe = wrap.querySelector('.proj-iframe');
@@ -787,6 +864,23 @@
     }
     scaleProjectPreviews();
     window.addEventListener('resize', scaleProjectPreviews);
+
+    // mobile nav toggle
+    var hamburger = document.querySelector('.hamburger');
+    var navLinks  = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', function() {
+      var open = navLinks.classList.toggle('open');
+      hamburger.classList.toggle('active', open);
+      hamburger.setAttribute('aria-expanded', open);
+    });
+    // close nav when a link is tapped
+    navLinks.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        navLinks.classList.remove('open');
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', false);
+      });
+    });
   </script>
 </body>
 </html>
