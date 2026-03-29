@@ -4,438 +4,789 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Michael Kibigo | Portfolio</title>
-  <meta name="description" content="Michael Kibigo IT portfolio website showcasing services." />
+  <meta name="description" content="Michael Kibigo — CS graduate and web developer based in Darwin, AU." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#f7fafc;
-      --bg-soft:#eef4f8;
-      --panel:#ffffff;
-      --panel-2:#f8fbfd;
-      --line:#d9e3ea;
-      --text:#1f2937;
-      --muted:#5f6f82;
-      --accent:#0f766e;
-      --accent-2:#2563eb;
-      --success:#16a34a;
-      --shadow:0 12px 30px rgba(15, 23, 42, .08);
-      --radius:22px;
-      --max:1180px;
+      /* Wealth Palette: #0F1516 · #7F8C94 · #C9C2C2 · #234C58 · #5E524B */
+      --dark:   #0f1516;
+      --slate:  #7f8c94;
+      --silver: #c9c2c2;
+      --teal:   #234c58;
+      --warm:   #5e524b;
+      --text:   #0f1516;
+      --muted:  #7f8c94;
+      --accent: #234c58;
+      --line:   #dbd8d7;
+      --bg:     #f3f2f1;
+      --max:    1080px;
     }
-    *{box-sizing:border-box}
+    *{box-sizing:border-box; margin:0; padding:0}
     html{scroll-behavior:smooth}
     body{
-      margin:0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-family:'Inter', ui-sans-serif, system-ui, sans-serif;
       color:var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(37,99,235,.08), transparent 25%),
-        radial-gradient(circle at right 10% top 20%, rgba(15,118,110,.07), transparent 18%),
-        linear-gradient(180deg, #f9fcfe 0%, #f4f8fb 45%, #eef4f8 100%);
+      background:var(--bg);
       line-height:1.6;
+      -webkit-font-smoothing:antialiased;
     }
-    a{color:inherit;text-decoration:none}
-    .container{width:min(var(--max), calc(100% - 32px)); margin:auto}
-    .nav{
+    a{color:inherit; text-decoration:none}
+    .wrap{width:min(var(--max), calc(100% - 48px)); margin:auto}
+
+    /* ─── NAV ─── */
+    nav{
       position:sticky; top:0; z-index:50;
-      backdrop-filter: blur(12px);
-      background:rgba(255,255,255,.88);
+      background:rgba(243,242,241,.94);
+      backdrop-filter:blur(14px);
       border-bottom:1px solid var(--line);
     }
-    .nav-inner{
+    .nav-row{
       display:flex; align-items:center; justify-content:space-between;
-      min-height:78px; gap:20px;
+      height:64px;
     }
-    .brand{
-      display:flex; align-items:center; gap:14px; font-weight:800; letter-spacing:.2px;
+    .wordmark{
+      font-weight:900; font-size:1rem; letter-spacing:-.03em; color:var(--text);
     }
-    .brand-badge{
-      width:42px; height:42px; border-radius:14px;
-      display:grid; place-items:center;
-      background:linear-gradient(135deg, var(--accent), var(--accent-2));
-      color:#fff; font-weight:900;
-      box-shadow:var(--shadow);
+    .wordmark em{font-style:normal; color:var(--teal)}
+    .nav-links{display:flex; gap:32px}
+    .nav-links a{
+      font-size:.86rem; font-weight:500; color:var(--muted);
+      transition:color .15s;
     }
-    .nav-links{display:flex; gap:24px; flex-wrap:wrap}
-    .nav-links a{color:var(--muted); font-weight:600}
-    .nav-links a:hover{color:var(--accent)}
-    .cta{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:14px 20px; border-radius:999px; font-weight:700;
-      background:linear-gradient(135deg, var(--accent), var(--accent-2));
-      color:#fff; box-shadow:var(--shadow);
-      transition:transform .2s ease, box-shadow .2s ease;
+    .nav-links a:hover{color:var(--text)}
+    .nav-btn{
+      font-size:.86rem; font-weight:700; padding:9px 22px;
+      border-radius:999px; background:var(--teal); color:#fff;
+      transition:opacity .15s, transform .15s;
     }
-    .cta:hover{transform:translateY(-2px)}
-    .cta.alt{
-      background:#fff; color:var(--text); border:1px solid var(--line); box-shadow:none;
-    }
+    .nav-btn:hover{opacity:.85; transform:translateY(-1px)}
 
-    .hero{padding:84px 0 52px}
-    .hero-grid{
-      display:grid; grid-template-columns:1.2fr .8fr; gap:28px; align-items:center;
+    /* ─── HERO ─── */
+    .hero{
+      padding:80px 0 72px;
+      border-bottom:1px solid var(--line);
+      overflow:hidden;
     }
-    .eyebrow{
-      display:inline-flex; gap:10px; align-items:center;
-      padding:8px 14px; border-radius:999px; border:1px solid var(--line);
-      color:var(--muted); background:rgba(255,255,255,.85); font-size:.92rem;
+    .hero-layout{
+      display:grid; grid-template-columns:1fr 280px; gap:64px; align-items:center;
     }
-    .dot{width:9px; height:9px; border-radius:999px; background:var(--success); box-shadow:0 0 12px rgba(22,163,74,.25)}
+    .hero-greeting{
+      display:flex; align-items:center; gap:10px;
+      font-size:.82rem; font-weight:700; text-transform:uppercase;
+      letter-spacing:.1em; color:var(--muted); margin-bottom:20px;
+    }
+    .hero-greeting::before{
+      content:''; width:22px; height:2px;
+      background:var(--teal); border-radius:2px; flex-shrink:0;
+    }
     h1{
-      font-size:clamp(2.4rem, 6vw, 5.2rem);
-      line-height:1.04; margin:18px 0 18px; letter-spacing:-.04em;
+      font-size:clamp(3.4rem, 7.5vw, 6.8rem);
+      font-weight:900; line-height:.95; letter-spacing:-.055em;
+      color:var(--text); margin-bottom:28px;
     }
-    .lead{
-      font-size:1.08rem; color:var(--muted); max-width:64ch; margin-bottom:28px;
+    h1 .name{color:var(--teal)}
+    .hero-bio{
+      font-size:1rem; color:var(--muted); max-width:44ch;
+      line-height:1.78; margin-bottom:36px;
     }
-    .hero-actions{display:flex; flex-wrap:wrap; gap:14px; margin-bottom:26px}
-    .meta{display:flex; flex-wrap:wrap; gap:12px}
-    .pill{
-      padding:10px 14px; border:1px solid var(--line); border-radius:999px;
-      color:var(--muted); background:#fff;
+    .hero-btns{display:flex; gap:12px; flex-wrap:wrap; align-items:center}
+    .btn{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:12px 26px; border-radius:999px;
+      font-size:.9rem; font-weight:700;
+      transition:all .16s;
+    }
+    .btn-solid{background:var(--teal); color:#fff}
+    .btn-solid:hover{background:#1a3840; transform:translateY(-1px)}
+    .btn-outline{
+      border:1.5px solid var(--line); color:var(--teal);
+      background:transparent;
+    }
+    .btn-outline:hover{background:rgba(35,76,88,.07); border-color:var(--teal)}
+    .btn-arrow{font-size:1rem; line-height:1}
+
+    /* hero right */
+    .hero-photo-col{
+      display:flex; flex-direction:column; gap:16px; align-items:center;
+    }
+    .photo-frame{
+      width:100%; aspect-ratio:3/4; border-radius:28px; overflow:hidden;
+      border:1px solid var(--line);
+      background:linear-gradient(160deg, var(--teal), var(--dark));
+      box-shadow:0 12px 40px rgba(15,21,22,.16);
+      position:relative;
+    }
+    .photo-frame img{
+      width:100%; height:100%; object-fit:cover; object-position:top center;
+      display:block;
+    }
+    .photo-badge{
+      position:absolute; bottom:16px; left:50%; transform:translateX(-50%);
+      background:rgba(15,21,22,.82); backdrop-filter:blur(8px);
+      border-radius:999px; padding:7px 18px;
+      white-space:nowrap;
+      display:flex; align-items:center; gap:8px;
+    }
+    .photo-badge-dot{
+      width:7px; height:7px; border-radius:50%;
+      background:var(--teal);
+      box-shadow:0 0 0 3px rgba(35,76,88,.35);
+      flex-shrink:0;
+    }
+    .photo-badge-text{
+      font-size:.75rem; font-weight:600; color:#fff; letter-spacing:.02em;
+    }
+    .hero-chips{display:flex; flex-wrap:wrap; gap:7px; justify-content:center}
+    .chip{
+      padding:5px 13px; border-radius:999px; font-size:.77rem;
+      font-weight:600; border:1px solid var(--line);
+    }
+    .chip-a{background:rgba(35,76,88,.10); color:var(--teal)}
+    .chip-b{background:rgba(94,82,75,.10); color:var(--warm)}
+    .chip-c{background:rgba(127,140,148,.12); color:var(--slate)}
+
+    /* ─── TICKER ─── */
+    .ticker{
+      background:var(--dark);
+      padding:15px 0;
+      overflow:hidden;
+    }
+    .ticker-track{
+      display:flex; gap:0;
+      animation:ticker 22s linear infinite;
+      width:max-content;
+    }
+    .ticker-track:hover{animation-play-state:paused}
+    .ticker-item{
+      display:flex; align-items:center; gap:0;
+      padding:0 28px;
+      font-size:.78rem; font-weight:700; text-transform:uppercase;
+      letter-spacing:.1em; color:rgba(201,194,194,.70);
+      white-space:nowrap;
+    }
+    .ticker-sep{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:5px; height:5px; border-radius:50%;
+      background:var(--teal); margin-left:28px;
+      flex-shrink:0;
+    }
+    @keyframes ticker{
+      from{transform:translateX(0)}
+      to{transform:translateX(-50%)}
     }
 
-    .profile-card{
-      position:relative; overflow:hidden;
-      border:1px solid var(--line); background:linear-gradient(180deg, #ffffff, #f8fbfd);
-      border-radius:28px; padding:26px; box-shadow:var(--shadow);
+    /* ─── SECTION SHELL ─── */
+    .section{padding:80px 0}
+    .section+.section{border-top:1px solid var(--line)}
+    .sec-eyebrow{
+      display:flex; align-items:center; gap:10px;
+      font-size:.72rem; font-weight:700; text-transform:uppercase;
+      letter-spacing:.14em; color:var(--teal);
+      margin-bottom:12px;
     }
-    .profile-glow{
-      position:absolute; inset:auto -60px -60px auto; width:180px; height:180px;
-      background:radial-gradient(circle, rgba(37,99,235,.12), transparent 60%);
-      filter:blur(10px);
+    .sec-eyebrow::before{content:'—'; color:var(--teal)}
+    .sec-title{
+      font-size:clamp(1.9rem, 4vw, 2.8rem);
+      font-weight:900; letter-spacing:-.04em; color:var(--text);
+      margin-bottom:48px; line-height:1.1;
     }
-    .avatar{
-      width:110px; height:110px; border-radius:24px;
-      background:linear-gradient(135deg, var(--accent), var(--accent-2));
-      display:grid; place-items:center; color:#fff; font-size:2rem; font-weight:900;
+    .sec-title em{font-style:normal; color:var(--muted)}
+
+    /* ─── SERVICES — accordion ─── */
+    .service-list{list-style:none}
+    details.svc{
+      border-top:1px solid var(--line);
+      overflow:hidden;
+    }
+    details.svc:last-child{border-bottom:1px solid var(--line)}
+    details.svc summary{
+      list-style:none; cursor:pointer;
+      display:grid; grid-template-columns:64px 1fr 32px;
+      align-items:center; gap:20px;
+      padding:24px 0;
+      transition:background .15s;
+    }
+    details.svc summary::-webkit-details-marker{display:none}
+    details.svc summary:hover .svc-title{color:var(--teal)}
+    .svc-num{
+      font-size:1rem; font-weight:800; color:var(--silver);
+      letter-spacing:.02em; transition:color .2s;
+    }
+    details[open] .svc-num{color:var(--teal)}
+    .svc-title{
+      font-size:1.15rem; font-weight:700; color:var(--text);
+      letter-spacing:-.02em; transition:color .2s;
+    }
+    .svc-arrow{
+      width:32px; height:32px; border-radius:50%;
+      border:1px solid var(--line);
+      display:grid; place-items:center;
+      font-size:.85rem; color:var(--muted);
+      transition:transform .25s, background .2s, border-color .2s;
+      flex-shrink:0;
+    }
+    details[open] .svc-arrow{
+      transform:rotate(45deg);
+      background:var(--teal); border-color:var(--teal); color:#fff;
+    }
+    .svc-body{
+      padding:0 0 28px 84px;
+      display:grid; grid-template-columns:1fr auto; gap:24px;
+      align-items:start;
+    }
+    .svc-body p{color:var(--muted); font-size:.97rem; line-height:1.75; max-width:52ch}
+    .svc-tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px}
+    .svc-tag{
+      padding:5px 13px; border-radius:999px; font-size:.78rem;
+      font-weight:600; color:var(--teal);
+      background:rgba(35,76,88,.08); border:1px solid var(--line);
+    }
+
+    /* ─── PROJECTS ─── */
+    .project-grid{
+      display:grid; grid-template-columns:repeat(2,1fr); gap:20px;
+    }
+    .proj-card{
+      border-radius:20px; overflow:hidden;
+      border:1px solid var(--line); background:#fff;
+      box-shadow:0 4px 20px rgba(15,21,22,.07);
+      transition:transform .22s ease, box-shadow .22s ease;
+    }
+    .proj-link{display:block; color:inherit}
+    .proj-card:hover{transform:translateY(-5px); box-shadow:0 20px 48px rgba(15,21,22,.14)}
+    .proj-visual{
+      height:200px; position:relative; overflow:hidden;
+    }
+    .proj-card:nth-child(1) .proj-visual{
+      background:linear-gradient(135deg, #7f8c94 0%, #234c58 100%);
+    }
+    .proj-card:nth-child(2) .proj-visual{
+      background:linear-gradient(135deg, #c9c2c2 0%, #5e524b 100%);
+    }
+    .proj-card:nth-child(3) .proj-visual{
+      background:linear-gradient(135deg, #234c58 0%, #0f1516 100%);
+    }
+    .proj-card.proj-featured{
+      grid-column:1 / -1;
+      display:grid; grid-template-columns:1.1fr .9fr;
+    }
+    .proj-card.proj-featured .proj-visual{
+      height:100%; min-height:220px;
+    }
+    .proj-card.proj-featured .proj-body{
+      display:flex; flex-direction:column; justify-content:center; padding:32px;
+    }
+    .proj-iframe{
+      position:absolute; top:0; left:0;
+      width:1280px; border:none;
+      pointer-events:none; display:block;
+      transform-origin:top left;
+    }
+    .proj-visual-overlay{
+      position:absolute; inset:0; z-index:2;
+      background:linear-gradient(to top, rgba(15,21,22,.80) 0%, transparent 52%);
+      display:flex; align-items:flex-end; justify-content:space-between;
+      padding:16px 20px;
+    }
+    .proj-url{
+      font-size:.88rem; font-weight:700; letter-spacing:-.01em;
+      color:rgba(255,255,255,.90);
+    }
+    .proj-index{
+      font-size:3.5rem; font-weight:900; line-height:1;
+      color:rgba(255,255,255,.18); letter-spacing:-.06em;
+      pointer-events:none;
+    }
+    .proj-body{padding:22px 24px 26px}
+    .proj-location{
+      display:inline-block; font-size:.72rem; font-weight:700;
+      text-transform:uppercase; letter-spacing:.1em;
+      color:var(--teal); margin-bottom:8px;
+    }
+    .proj-body h3{
+      font-size:1.05rem; font-weight:800; margin-bottom:8px;
+      letter-spacing:-.02em;
+    }
+    .proj-body p{
+      color:var(--muted); font-size:.92rem; line-height:1.65;
       margin-bottom:18px;
     }
-    .profile-card h3{margin:0 0 8px}
-    .profile-card p{margin:0; color:var(--muted)}
-    .stat-grid{
-      display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:22px;
-    }
-    .stat{
-      border:1px solid var(--line); border-radius:18px; padding:16px;
-      background:#fff;
-    }
-    .stat b{display:block; font-size:1.35rem; margin-bottom:4px}
-    .section{padding:30px 0 70px}
-    .section-head{
-      display:flex; justify-content:space-between; gap:18px; align-items:end; margin-bottom:24px;
-    }
-    .section-head h2{font-size:clamp(1.7rem, 3vw, 2.6rem); margin:0}
-    .section-head p{margin:0; color:var(--muted); max-width:62ch}
-    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:22px}
-    .grid-2{display:grid; grid-template-columns:repeat(2,1fr); gap:22px}
-    .card{
-      border:1px solid var(--line); border-radius:var(--radius);
-      background:linear-gradient(180deg, #ffffff, #f8fbfd);
-      padding:24px; box-shadow:var(--shadow);
-    }
-    .card h3{margin:0 0 10px}
-    .card p{margin:0; color:var(--muted)}
-    .icon{
-      width:52px; height:52px; border-radius:16px; margin-bottom:16px;
-      display:grid; place-items:center; font-size:1.35rem;
-      background:linear-gradient(135deg, rgba(15,118,110,.10), rgba(37,99,235,.10));
-      border:1px solid var(--line);
-    }
-    .project{
-      display:flex; flex-direction:column; gap:18px;
-      min-height:260px;
-    }
-    .project-top{
-      min-height:150px; border-radius:18px; border:1px solid var(--line);
-      background:
-       linear-gradient(140deg, rgba(15,118,110,.08), rgba(37,99,235,.08)),
-       linear-gradient(180deg, #ffffff, #f8fbfd);
-      padding:18px; position:relative; overflow:hidden;
-    }
-    .browser{
-      width:100%; border-radius:14px; border:1px solid var(--line);
-      background:#ffffff; overflow:hidden;
-    }
-    .browser-bar{
-      display:flex; gap:8px; padding:10px 12px; border-bottom:1px solid var(--line);
-      align-items:center;
-      background:#f6fafc;
-    }
-    .browser-bar span{
-      width:10px; height:10px; border-radius:50%; background:#c1cfda;
-      display:inline-block;
-    }
-    .browser-body{
-      padding:16px 14px 18px; color:#6b7b8d;
-      display:grid; gap:10px;
-    }
-    .line{height:10px; border-radius:999px; background:#e5edf3}
-    .line.short{width:45%}
-    .line.med{width:65%}
-    .line.long{width:84%}
-    .tag-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:auto}
+    .tag-row{display:flex; gap:8px; flex-wrap:wrap}
     .tag{
-      padding:8px 12px; border-radius:999px; color:#425466;
-      border:1px solid var(--line); background:#fff; font-size:.9rem;
+      padding:5px 12px; border-radius:999px; font-size:.77rem;
+      font-weight:600; color:var(--teal);
+      background:rgba(35,76,88,.08); border:1px solid var(--line);
     }
-    .about-box p{color:var(--muted)}
-    .skills{
-      display:flex; flex-wrap:wrap; gap:12px;
+
+    /* ─── DARK SKILLS SECTION ─── */
+    .skills-section{
+      background:var(--dark);
+      padding:80px 0;
     }
+    .skills-section .sec-eyebrow{color:var(--silver)}
+    .skills-section .sec-eyebrow::before{color:var(--silver)}
+    .skills-section .sec-title{color:#fff}
+    .skills-section .sec-title em{color:rgba(201,194,194,.40)}
+    .skills-grid{
+      display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start;
+    }
+    .about-text p{
+      color:rgba(201,194,194,.60); font-size:.97rem;
+      line-height:1.78; margin-bottom:16px;
+    }
+    .about-text p:last-child{margin-bottom:0}
+    .skills-wrap{display:flex; flex-direction:column; gap:24px}
+    .skill-group-label{
+      font-size:.68rem; font-weight:700; text-transform:uppercase;
+      letter-spacing:.14em; color:rgba(201,194,194,.35);
+      margin-bottom:10px;
+    }
+    .skill-group-pills{display:flex; flex-wrap:wrap; gap:9px}
     .skill{
-      padding:12px 14px; border-radius:14px; border:1px solid var(--line);
-      background:#fff; color:#334155; font-weight:600;
+      padding:8px 16px; border-radius:999px; font-size:.83rem;
+      font-weight:600; transition:transform .15s, box-shadow .15s;
+      border:1px solid transparent;
     }
-    .contact-box{
-      display:grid; grid-template-columns:1.1fr .9fr; gap:22px;
+    .skill-blue{
+      background:rgba(35,76,88,.30); color:#7bbdcc;
+      border-color:rgba(35,76,88,.50);
     }
-    .contact-list{display:grid; gap:14px}
-    .contact-item{
-      padding:16px 18px; border-radius:18px; border:1px solid var(--line);
-      background:#fff;
+    .skill-peach{
+      background:rgba(94,82,75,.25); color:#c4b4aa;
+      border-color:rgba(94,82,75,.40);
     }
-    .contact-item small{display:block; color:var(--muted); margin-bottom:6px}
+    .skill-sage{
+      background:rgba(127,140,148,.18); color:var(--silver);
+      border-color:rgba(127,140,148,.30);
+    }
+    .skill:hover{transform:translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,.25)}
+
+    /* ─── CONTACT ─── */
+    .contact-grid{
+      display:grid; grid-template-columns:1.15fr .85fr; gap:20px;
+    }
+    .contact-main{
+      border-radius:20px;
+      background:linear-gradient(140deg, rgba(35,76,88,.10) 0%, rgba(35,76,88,.04) 100%);
+      border:1px solid rgba(35,76,88,.20); padding:36px;
+      box-shadow:0 4px 20px rgba(15,21,22,.07);
+    }
+    .contact-main h2{
+      font-size:1.65rem; font-weight:900; letter-spacing:-.04em;
+      margin-bottom:12px; color:var(--text);
+    }
+    .contact-main p{
+      color:var(--muted); font-size:.97rem; line-height:1.72;
+      margin-bottom:28px; max-width:34ch;
+    }
+    .contact-details{display:flex; flex-direction:column; gap:12px}
+    .c-item{
+      border-radius:14px; border:1px solid var(--line);
+      background:#fff; padding:16px 20px;
+      transition:background .15s;
+    }
+    .c-item:hover{background:rgba(35,76,88,.06)}
+    .c-item small{
+      display:block; font-size:.7rem; font-weight:700;
+      text-transform:uppercase; letter-spacing:.1em;
+      color:var(--muted); margin-bottom:4px;
+    }
+    .c-item span{font-size:.95rem; font-weight:500; color:var(--text)}
+
+    /* ─── FOOTER ─── */
     footer{
-      padding:28px 0 48px; color:var(--muted);
-      border-top:1px solid var(--line);
-      background:rgba(255,255,255,.65);
+      background:var(--dark);
+      border-top:1px solid rgba(255,255,255,.06);
+      padding:28px 0;
     }
     .footer-row{
-      display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap;
+      display:flex; justify-content:space-between; align-items:center;
+      flex-wrap:wrap; gap:10px;
+      font-size:.82rem; color:rgba(201,194,194,.50);
     }
-    @media (max-width: 980px){
-      .hero-grid,.grid-3,.grid-2,.contact-box{grid-template-columns:1fr}
-      .section-head{align-items:start; flex-direction:column}
+
+    /* ─── RESPONSIVE ─── */
+    @media(max-width:880px){
+      .hero-layout{grid-template-columns:1fr; gap:36px}
+      .project-grid,.skills-grid,.contact-grid{grid-template-columns:1fr}
+      .svc-body{grid-template-columns:1fr; padding-left:64px}
+      .proj-card.proj-featured{grid-template-columns:1fr}
+      .proj-card.proj-featured .proj-visual{min-height:200px}
     }
-    @media (max-width: 700px){
-      .nav-inner{padding:14px 0; align-items:flex-start; flex-direction:column}
-      .nav-links{gap:14px}
-      .hero{padding-top:48px}
+    @media(max-width:620px){
+      h1{font-size:clamp(2.8rem, 12vw, 4rem)}
+      .nav-links{display:none}
+      .section,.skills-section{padding:56px 0}
+      details.svc summary{grid-template-columns:48px 1fr 32px; gap:14px}
+      .svc-body{padding-left:0}
+      .wrap{width:calc(100% - 32px)}
     }
   </style>
 </head>
 <body>
-  <nav class="nav">
-    <div class="container nav-inner">
-      <a class="brand" href="#top">
-        <span class="brand-badge">MK</span>
-        <span>Michael Kibigo</span>
-      </a>
+
+  <!-- NAV -->
+  <nav>
+    <div class="wrap nav-row">
+      <a class="wordmark" href="#top">Michael<em>.</em></a>
       <div class="nav-links">
-        <a href="#about">About</a>
         <a href="#services">Services</a>
         <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
+        <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </div>
-      <a class="cta" href="#contact">Let's Work</a>
+      <a class="nav-btn" href="#contact">Contact Me</a>
     </div>
   </nav>
 
   <main id="top">
+
+    <!-- HERO -->
     <section class="hero">
-      <div class="container hero-grid">
+      <div class="wrap hero-layout">
         <div>
-          <span class="eyebrow"><span class="dot"></span>Available for web, systems, and digital projects</span>
-          <h1>Building clean, modern, business-ready digital experiences.</h1>
-          <p class="lead">
-            I’m Michael Kibigo, an IT professional focused on web development, digital systems, and practical technology solutions.
+          <p class="hero-greeting">CS Graduate · Darwin, Australia</p>
+          <h1>I'm <span class="name">Michael<br>Kibigo.</span></h1>
+          <p class="hero-bio">
+            Web developer and IT professional building clean, fast, business-ready websites and digital systems for clients who care about results.
           </p>
-          <div class="hero-actions">
-            <a class="cta" href="#projects">View Projects</a>
-            <a class="cta alt" href="#about">More About Me</a>
-          </div>
-          <div class="meta">
-            <span class="pill">Web Development</span>
-            <span class="pill">System Design</span>
-            <span class="pill">UI-Focused Delivery</span>
-            <span class="pill">Business Solutions</span>
+          <div class="hero-btns">
+            <a class="btn btn-solid" href="#projects">View Work <span class="btn-arrow">→</span></a>
+            <a class="btn btn-outline" href="#contact">Hire Me</a>
           </div>
         </div>
-
-        <aside class="profile-card">
-          <div class="profile-glow"></div>
-          <div class="avatar">MK</div>
-          <h3>Michael Kibigo</h3>
-          <p>IT Portfolio · Clean layout · Client-ready project showcase</p>
-          <div class="stat-grid">
-            <div class="stat">
-              <b>02+</b>
-              <span>Featured completed projects</span>
-            </div>
-            <div class="stat">
-              <b>04</b>
-              <span>Core service areas</span>
-            </div>
-            <div class="stat">
-              <b>Modern</b>
-              <span>Friendly light theme</span>
-            </div>
-            <div class="stat">
-              <b>Responsive</b>
-              <span>Mobile-friendly build</span>
+        <div class="hero-photo-col">
+          <div class="photo-frame">
+            <!-- Replace photo.jpg with your actual image filename -->
+            <img src="photo.jpg" alt="Michael Kibigo">
+            <div class="photo-badge">
+              <span class="photo-badge-dot"></span>
+              <span class="photo-badge-text">Available for projects</span>
             </div>
           </div>
-        </aside>
+          <div class="hero-chips">
+            <span class="chip chip-a">HTML · CSS · JS</span>
+            <span class="chip chip-b">Responsive Design</span>
+            <span class="chip chip-c">Web Strategy</span>
+          </div>
+        </div>
       </div>
     </section>
 
+    <!-- TICKER -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span class="ticker-item">Web Development<span class="ticker-sep"></span></span>
+        <span class="ticker-item">System Design<span class="ticker-sep"></span></span>
+        <span class="ticker-item">Docker &amp; Kubernetes<span class="ticker-sep"></span></span>
+        <span class="ticker-item">CI/CD Pipelines<span class="ticker-sep"></span></span>
+        <span class="ticker-item">Caching &amp; Scaling<span class="ticker-sep"></span></span>
+        <span class="ticker-item">Software Engineering<span class="ticker-sep"></span></span>
+        <span class="ticker-item">REST APIs<span class="ticker-sep"></span></span>
+        <span class="ticker-item">Microservices<span class="ticker-sep"></span></span>
+        <span class="ticker-item">IT Consulting<span class="ticker-sep"></span></span>
+        <span class="ticker-item">Cloud Infrastructure<span class="ticker-sep"></span></span>
+        <!-- duplicate for seamless loop -->
+        <span class="ticker-item">Web Development<span class="ticker-sep"></span></span>
+        <span class="ticker-item">System Design<span class="ticker-sep"></span></span>
+        <span class="ticker-item">Docker &amp; Kubernetes<span class="ticker-sep"></span></span>
+        <span class="ticker-item">CI/CD Pipelines<span class="ticker-sep"></span></span>
+        <span class="ticker-item">Caching &amp; Scaling<span class="ticker-sep"></span></span>
+        <span class="ticker-item">Software Engineering<span class="ticker-sep"></span></span>
+        <span class="ticker-item">REST APIs<span class="ticker-sep"></span></span>
+        <span class="ticker-item">Microservices<span class="ticker-sep"></span></span>
+        <span class="ticker-item">IT Consulting<span class="ticker-sep"></span></span>
+        <span class="ticker-item">Cloud Infrastructure<span class="ticker-sep"></span></span>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
     <section class="section" id="services">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>Services</h2>
-          </div>
-          <!--<p>Designed to present you as a capable IT professional who can design, build, improve, and support digital products for clients and organisations.</p> -->
-        </div>
-        <div class="grid-3">
-          <article class="card">
-            <div class="icon">⌘</div>
-            <h3>Website Development</h3>
-            <p>Responsive business websites, landing pages, portfolio sites, and custom front-end builds focused on clarity, speed, and conversion.</p>
-          </article>
-          <article class="card">
-            <div class="icon">⚙</div>
-            <h3>Systems & Process Solutions</h3>
-            <p>Digital workflow improvement, basic systems integration planning, and operational technology support for growing teams.</p>
-          </article>
-          <article class="card">
-            <div class="icon">◈</div>
-            <h3>IT Consulting</h3>
-            <p>Practical guidance on hosting, deployment, technology stack choices, and digital implementation for startups and small organisations.</p>
-          </article>
-        </div>
+      <div class="wrap">
+        <p class="sec-eyebrow">My Specialisation</p>
+        <h2 class="sec-title">Services I <em>Provide</em></h2>
+        <ul class="service-list">
+
+          <details class="svc" open>
+            <summary>
+              <span class="svc-num">01.</span>
+              <span class="svc-title">Website Development</span>
+              <span class="svc-arrow">+</span>
+            </summary>
+            <div class="svc-body">
+              <div>
+                <p>Responsive business websites, landing pages, portfolio sites, and custom front-end builds focused on clarity, speed, and conversion.</p>
+                <div class="svc-tags">
+                  <span class="svc-tag">Landing Pages</span>
+                  <span class="svc-tag">Portfolio Sites</span>
+                  <span class="svc-tag">Business Websites</span>
+                  <span class="svc-tag">Front-End Builds</span>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details class="svc">
+            <summary>
+              <span class="svc-num">02.</span>
+              <span class="svc-title">Systems &amp; Process Solutions</span>
+              <span class="svc-arrow">+</span>
+            </summary>
+            <div class="svc-body">
+              <div>
+                <p>Digital workflow improvement, systems integration planning, and operational technology support for growing teams and organisations.</p>
+                <div class="svc-tags">
+                  <span class="svc-tag">Workflow Design</span>
+                  <span class="svc-tag">Systems Integration</span>
+                  <span class="svc-tag">Tech Support</span>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details class="svc">
+            <summary>
+              <span class="svc-num">03.</span>
+              <span class="svc-title">Software Engineering</span>
+              <span class="svc-arrow">+</span>
+            </summary>
+            <div class="svc-body">
+              <div>
+                <p>End-to-end software development covering system design, scalable architecture, REST APIs, and clean backend code built for maintainability and growth.</p>
+                <div class="svc-tags">
+                  <span class="svc-tag">System Design</span>
+                  <span class="svc-tag">REST APIs</span>
+                  <span class="svc-tag">Scalable Architecture</span>
+                  <span class="svc-tag">Microservices</span>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details class="svc">
+            <summary>
+              <span class="svc-num">04.</span>
+              <span class="svc-title">DevOps &amp; Infrastructure</span>
+              <span class="svc-arrow">+</span>
+            </summary>
+            <div class="svc-body">
+              <div>
+                <p>Setting up CI/CD pipelines, containerising applications with Docker and Kubernetes, implementing caching strategies, and managing cloud infrastructure for reliable, scalable deployments.</p>
+                <div class="svc-tags">
+                  <span class="svc-tag">Docker</span>
+                  <span class="svc-tag">Kubernetes</span>
+                  <span class="svc-tag">CI/CD</span>
+                  <span class="svc-tag">Caching</span>
+                  <span class="svc-tag">Cloud Infrastructure</span>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details class="svc">
+            <summary>
+              <span class="svc-num">05.</span>
+              <span class="svc-title">IT Consulting</span>
+              <span class="svc-arrow">+</span>
+            </summary>
+            <div class="svc-body">
+              <div>
+                <p>Practical guidance on hosting, deployment, technology stack choices, and digital implementation for startups and small organisations.</p>
+                <div class="svc-tags">
+                  <span class="svc-tag">Hosting &amp; Deployment</span>
+                  <span class="svc-tag">Stack Advice</span>
+                  <span class="svc-tag">Digital Strategy</span>
+                </div>
+              </div>
+            </div>
+          </details>
+
+        </ul>
       </div>
     </section>
 
+    <!-- PROJECTS -->
     <section class="section" id="projects">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>Completed Projects</h2>
-          </div>
-          <p></p>
-        </div>
+      <div class="wrap">
+        <p class="sec-eyebrow">Latest Projects</p>
+        <h2 class="sec-title">Take a Look at <em>My Work</em></h2>
+        <div class="project-grid">
 
-        <div class="grid-2">
-          <article class="card project">
-            <div class="project-top">
-              <div class="browser">
-                <div class="browser-bar"><span></span><span></span><span></span></div>
-                <div class="browser-body">
-                  <div class="line med"></div>
-                  <div class="line long"></div>
-                  <div class="line short"></div>
-                </div>
+          <article class="proj-card">
+            <a class="proj-link" href="https://desmondgitonyi.com/" target="_blank" rel="noopener noreferrer">
+            <div class="proj-visual">
+              <iframe class="proj-iframe" src="https://desmondgitonyi.com/" scrolling="no" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+              <div class="proj-visual-overlay">
+                <span class="proj-url">desmondgitonyi.com ↗</span>
+                <span class="proj-index">01</span>
               </div>
             </div>
-            <div>
-              <h3>desmondgitonyi.com</h3>
-              <p>A personal/professional portfolio-style website presenting profile information, service offerings, and a structured digital presence for client engagement.</p>
+            <div class="proj-body">
+              <h3>Personal Portfolio Website</h3>
+              <p>A professional portfolio presenting profile information, service offerings, and a structured digital presence for client engagement.</p>
+              <div class="tag-row">
+                <span class="tag">Portfolio</span>
+                <span class="tag">Responsive</span>
+                <span class="tag">Branding</span>
+              </div>
             </div>
-            <div class="tag-row">
-              <span class="tag">Portfolio Website</span>
-              <span class="tag">Responsive Design</span>
-              <span class="tag">Professional Branding</span>
+            </a>
+          </article>
+
+          <article class="proj-card">
+            <div class="proj-visual">
+              <iframe class="proj-iframe" src="https://darwinhastalents.com.au/" scrolling="no" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+              <div class="proj-visual-overlay">
+                <span class="proj-url">darwinhastalents.com.au ↗</span>
+                <span class="proj-index">02</span>
+              </div>
+            </div>
+            <div class="proj-body">
+              <h3>Creative Talent Platform</h3>
+              <p>A talent-focused digital platform spotlighting creatives, projects, and opportunities with a clean, audience-friendly interface.</p>
+              <div class="tag-row">
+                <span class="tag">Platform</span>
+                <span class="tag">Showcase</span>
+                <span class="tag">Modern UI</span>
+              </div>
             </div>
           </article>
 
-          <article class="card project">
-            <div class="project-top">
-              <div class="browser">
-                <div class="browser-bar"><span></span><span></span><span></span></div>
-                <div class="browser-body">
-                  <div class="line long"></div>
-                  <div class="line med"></div>
-                  <div class="line med"></div>
-                </div>
+          <article class="proj-card proj-featured">
+            <div class="proj-visual">
+              <iframe class="proj-iframe" src="https://kuriinvestments.co.ke/" scrolling="no" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+              <div class="proj-visual-overlay">
+                <span class="proj-url">kuriinvestments.co.ke ↗</span>
+                <span class="proj-index">03</span>
               </div>
             </div>
-            <div>
-              <h3>darwinhastalents.com.au</h3>
-              <p>A talent-focused digital platform concept designed to spotlight creatives, projects, and opportunities with a clean, audience-friendly interface.</p>
-            </div>
-            <div class="tag-row">
-              <span class="tag">Creative Platform</span>
-              <span class="tag">Showcase Layout</span>
-              <span class="tag">Modern UI</span>
+            <div class="proj-body">
+              <span class="proj-location">Nairobi, Kenya</span>
+              <h3>Kuri Investments — Construction &amp; Real Estate</h3>
+              <p>A corporate web presence for a Kenyan construction and investment firm, showcasing their project portfolio, services, and company profile to attract clients and partners across East Africa.</p>
+              <div class="tag-row">
+                <span class="tag">Corporate Site</span>
+                <span class="tag">Construction</span>
+                <span class="tag">Real Estate</span>
+                <span class="tag">Kenya</span>
+              </div>
             </div>
           </article>
+
         </div>
       </div>
     </section>
 
-    <section class="section" id="about">
-      <div class="container grid-2">
-        <div class="card about-box">
-          <h2>About Michael</h2>
-          <p>
-            <!--This portfolio is structured to help you present yourself in a premium, credible way to potential clients, employers, and collaborators.
-            It emphasizes a strong introduction, clear services, notable project proof, and accessible contact points.-->
-            I am a passionate IT professional who studied computer science at Charles Darwin University
-          </p>
-          <p>
-            <!--You can replace this text with your real biography, technical background, certifications, work history, and the specific outcomes you have delivered for clients.-->
-          </p>
-        </div>
-        <div class="card" id="skills">
-          <h2>Core Skills</h2>
-          <div class="skills">
-            <span class="skill">HTML5</span>
-            <span class="skill">CSS3</span>
-            <span class="skill">JavaScript</span>
-            <span class="skill">Responsive Design</span>
-            <span class="skill">Hosting & Deployment</span>
-            <span class="skill">IT Support</span>
-            <span class="skill">System Planning</span>
-            <span class="skill">Web Strategy</span>
+    <!-- ABOUT + SKILLS — dark section -->
+    <section class="skills-section" id="about">
+      <div class="wrap">
+        <p class="sec-eyebrow">Skills / Background</p>
+        <h2 class="sec-title">About Me &amp; <em>My Skills</em></h2>
+        <div class="skills-grid" id="skills">
+          <div class="about-text">
+            <p>I'm a Computer Science graduate from Charles Darwin University with a focus on software engineering, web development, and scalable system design. I build things that work in production — not just in development.</p>
+            <p>From containerised deployments with Docker and Kubernetes to designing systems that scale with caching and load balancing, I bring engineering thinking to every project. I also build clean, fast web experiences for clients who care about quality.</p>
+          </div>
+          <div class="skills-wrap">
+            <div>
+              <p class="skill-group-label">Frontend</p>
+              <div class="skill-group-pills">
+                <span class="skill skill-blue">HTML5</span>
+                <span class="skill skill-blue">CSS3</span>
+                <span class="skill skill-blue">JavaScript</span>
+                <span class="skill skill-blue">Responsive Design</span>
+                <span class="skill skill-blue">UI Development</span>
+              </div>
+            </div>
+            <div>
+              <p class="skill-group-label">Software Engineering</p>
+              <div class="skill-group-pills">
+                <span class="skill skill-peach">System Design</span>
+                <span class="skill skill-peach">Scaling Systems</span>
+                <span class="skill skill-peach">REST APIs</span>
+                <span class="skill skill-peach">Microservices</span>
+                <span class="skill skill-peach">Data Structures</span>
+                <span class="skill skill-peach">Algorithms</span>
+              </div>
+            </div>
+            <div>
+              <p class="skill-group-label">DevOps &amp; Infrastructure</p>
+              <div class="skill-group-pills">
+                <span class="skill skill-sage">Docker</span>
+                <span class="skill skill-sage">Kubernetes</span>
+                <span class="skill skill-sage">CI/CD</span>
+                <span class="skill skill-sage">Caching</span>
+                <span class="skill skill-sage">Linux</span>
+                <span class="skill skill-sage">Cloud Infrastructure</span>
+                <span class="skill skill-sage">Git</span>
+              </div>
+            </div>
+            <div>
+              <p class="skill-group-label">General IT</p>
+              <div class="skill-group-pills">
+                <span class="skill skill-blue">IT Support</span>
+                <span class="skill skill-blue">Hosting &amp; Deployment</span>
+                <span class="skill skill-blue">Web Strategy</span>
+                <span class="skill skill-blue">System Planning</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- CONTACT -->
     <section class="section" id="contact">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>Contact</h2>
+      <div class="wrap">
+        <p class="sec-eyebrow">Get in Touch</p>
+        <h2 class="sec-title">Let's Build <em>Together</em></h2>
+        <div class="contact-grid">
+          <div class="contact-main">
+            <h2>Got a project in mind?</h2>
+            <p>Whether it's a website, portfolio, or digital systems work — reach out and let's talk through it.</p>
+            <a class="btn btn-solid" href="mailto:kibigoprojects@gmail.com">Send an Email →</a>
           </div>
-          <!--<p>Replace the placeholders below with your real contact details, WhatsApp number, email address, and booking link.</p> -->
-        </div>
-
-        <div class="contact-box">
-          <div class="card">
-            <h3>Let’s build something valuable.</h3>
-            <p style="color:var(--muted); margin-bottom:18px;">
-              Ready for a business website, portfolio site, or digital systems improvement? <!--Use this section to direct visitors toward your preferred enquiry method.-->
-            </p>
-            <a class="cta" href="mailto:kibigoprojects@gmail.com">Email Michael</a>
-          </div>
-
-          <div class="contact-list">
-            <div class="contact-item">
+          <div class="contact-details">
+            <div class="c-item">
               <small>Email</small>
-              kibigoprojects@gmail.com
+              <span>kibigoprojects@gmail.com</span>
             </div>
-            <div class="contact-item">
+            <div class="c-item">
               <small>Phone</small>
-              +61 475 767 738
+              <span>+61 475 767 738</span>
             </div>
-            <div class="contact-item">
+            <div class="c-item">
               <small>Location</small>
-              Darwin, Northern Territory, Australia
+              <span>Darwin, Northern Territory, Australia</span>
             </div>
           </div>
         </div>
       </div>
     </section>
+
   </main>
 
   <footer>
-    <div class="container footer-row">
-      <span>© 2026 Michael Kibigo. All rights reserved.</span>
-      <!--<span>User-friendly light colour palette • Responsive single-page website</span>-->
+    <div class="wrap footer-row">
+      <span>© 2026 Michael Kibigo</span>
+      <span>CS Graduate · Darwin, AU</span>
     </div>
   </footer>
+
+  <script>
+    function scaleProjectPreviews() {
+      document.querySelectorAll('.proj-visual').forEach(function(wrap) {
+        var iframe = wrap.querySelector('.proj-iframe');
+        if (!iframe) return;
+        var scale = wrap.offsetWidth / 1280;
+        iframe.style.transform = 'scale(' + scale + ')';
+        iframe.style.height = Math.ceil(wrap.offsetHeight / scale) + 'px';
+      });
+    }
+    scaleProjectPreviews();
+    window.addEventListener('resize', scaleProjectPreviews);
+  </script>
 </body>
 </html>
